@@ -32,9 +32,9 @@ public class OscillatorUtils {
 	}
 
 	static double nextFrequency() {
-		return Model.MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS +
+		return Model.Defaults.MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS +
 				RandomHelper.nextDouble() *
-				Model.MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS;
+				Model.Defaults.MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS;
 	}
 	
 	static double nextPhase() {

@@ -24,6 +24,7 @@ import repast.simphony.context.Context;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
+
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.StrictBorders;
 
@@ -36,6 +37,8 @@ public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 
 	@Override
 	public Context<Oscillator> build(Context<Oscillator> context) {
+		final Model m = Model.getModel();
+		
 		context.setId("joscillators");
 
 		// Create space to graphically represent oscillators
@@ -45,7 +48,7 @@ public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 				"space", context, adder, new StrictBorders(), adder.getSpaceWidth(), adder.getSpaceHeight());
 
 		// Added oscillators to context (and therefore to space, via OscillatorAdder)
-		for (int i = 0; i < Model.NUMBER_OF_OSCILLATORS; i++) {
+		for (int i = 0; i < m.numberOfOscillators; i++) {
 			context.add (new Kuramoto(OscillatorUtils.nextPhase(), OscillatorUtils.nextFrequency(), space));
 		}
 		

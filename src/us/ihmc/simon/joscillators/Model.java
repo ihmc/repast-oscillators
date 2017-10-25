@@ -19,12 +19,36 @@
  */
 package us.ihmc.simon.joscillators;
 
-public interface Model {
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.parameter.Parameters;
 
-	static final int NUMBER_OF_OSCILLATORS = 5;
-	
-	static final double MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS = Math.PI/4;
-	static final double MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS = Math.PI/16;
+public class Model {
 
-	static final double COUPLING_CONSTANT = 5.0;
+	interface Defaults {
+		static final int NUMBER_OF_OSCILLATORS = 5;
+		
+		static final double MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS = Math.PI/4;
+		static final double MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS = Math.PI/16;
+
+		static final double COUPLING_CONSTANT = 5.0;
+	}
+
+	private static Model INSTANCE = null;
+	public final int numberOfOscillators;
+	public final double couplingConstant;
+
+	private Model(int numberOfOscillators, double couplingConstant) {
+		this.numberOfOscillators = numberOfOscillators;
+		this.couplingConstant = couplingConstant;
+	}
+
+	static Model getModel() {
+		if (INSTANCE == null) {
+			Parameters params = RunEnvironment.getInstance().getParameters();
+			int numberOfOscillators = params.getInteger("numberOfOscillators");
+			double couplingConstant = params.getDouble("couplingConstant");
+			INSTANCE = new Model (numberOfOscillators, couplingConstant);
+		}
+		return INSTANCE;
+	}
 }
