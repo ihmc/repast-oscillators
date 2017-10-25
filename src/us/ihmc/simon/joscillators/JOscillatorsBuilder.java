@@ -6,7 +6,6 @@ import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.StrictBorders;
-import us.ihmc.simon.joscillators.RandomWalker;
 
 public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 
