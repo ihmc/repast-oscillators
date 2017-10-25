@@ -18,8 +18,8 @@ public class Kuramoto extends Oscillator {
 	public void update() {		
 		final double currentPhase = phase;
 		double c = Model.COUPLING_CONSTANT / Model.NUMBER_OF_OSCILLATORS;
+		// Get all oscillators from "space" and compute sum
 		double sum = c * StreamSupport.stream(space.getObjects().spliterator(), false)
-				//.filter(o -> o.equals(this))
 				.mapToDouble(o -> Math.sin(o.phase - currentPhase))
 				.sum();
 
