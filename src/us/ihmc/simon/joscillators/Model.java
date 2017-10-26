@@ -13,20 +13,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 package us.ihmc.simon.joscillators;
 
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.parameter.Parameters;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public class Model {
 
 	interface Defaults {
 		static final int NUMBER_OF_OSCILLATORS = 5;
-		
+
 		static final double MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS = Math.PI/4;
 		static final double MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS = Math.PI/16;
 
@@ -36,10 +38,14 @@ public class Model {
 	private static Model INSTANCE = null;
 	public final int numberOfOscillators;
 	public final double couplingConstant;
+	public final Noise noise;
+	public final Pulse pulse;
 
-	private Model(int numberOfOscillators, double couplingConstant) {
+	private Model(int numberOfOscillators, double couplingConstant, Noise noise, Pulse pulse) {
 		this.numberOfOscillators = numberOfOscillators;
 		this.couplingConstant = couplingConstant;
+		this.noise = noise;
+		this.pulse = pulse;
 	}
 
 	static Model getModel() {
@@ -47,7 +53,16 @@ public class Model {
 			Parameters params = RunEnvironment.getInstance().getParameters();
 			int numberOfOscillators = params.getInteger("numberOfOscillators");
 			double couplingConstant = params.getDouble("couplingConstant");
-			INSTANCE = new Model (numberOfOscillators, couplingConstant);
+
+			double samplingFreq = params.getDouble("samplingFrequency");
+			double pulseFreq = params.getDouble("pulseFrequency");
+			double noiseMean = 0; // params.getDouble("noiseMean");
+			double noiseStdDev = 1/samplingFreq; // params.getDouble("noiseStdDev");
+			double noiseStrength = params.getDouble("noiseStrength");
+
+			INSTANCE = new Model (numberOfOscillators, couplingConstant,
+					new Noise(noiseMean, noiseStdDev, noiseStrength),
+					new Pulse(0));
 		}
 		return INSTANCE;
 	}
