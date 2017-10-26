@@ -13,17 +13,19 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 
 package us.ihmc.simon.joscillators;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public class ContinuosPoint {
 	final double x;
 	final double y;
-	
+
 	ContinuosPoint(double x, double y) {
 		this.x = x;
 		this.y = y;

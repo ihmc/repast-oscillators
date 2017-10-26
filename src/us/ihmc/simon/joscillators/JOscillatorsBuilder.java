@@ -13,9 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 
 package us.ihmc.simon.joscillators;
@@ -28,6 +25,11 @@ import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.StrictBorders;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 
 	interface GUI {
