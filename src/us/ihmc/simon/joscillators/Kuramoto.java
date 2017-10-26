@@ -13,9 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 
 package us.ihmc.simon.joscillators;
@@ -26,6 +23,11 @@ import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.continuous.ContinuousSpace;
 import simphony.util.messages.MessageCenter;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public class Kuramoto extends Oscillator {
 
 	MessageCenter logger = MessageCenter.getMessageCenter(Kuramoto.class);
@@ -44,7 +46,7 @@ public class Kuramoto extends Oscillator {
 				.mapToDouble(o -> Math.sin(o.phase - currentPhase))
 				.sum();
 
-		double newPhase = frequency + sum;
+		double newPhase = frequency + sum + m.noise.get() + m.pulse.get(this);
 		logger.info("transitioning phase: " + phase + " -> " + newPhase);
 		phase = newPhase;
 
