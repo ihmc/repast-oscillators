@@ -13,9 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 package us.ihmc.simon.joscillators;
 
@@ -24,6 +21,11 @@ import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.SimpleCartesianAdder;
 import us.ihmc.simon.joscillators.JOscillatorsBuilder.GUI;
 
+/**
+ * Added class that adds oscillator agents on a unit circle.
+ *
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ */
 public class OscillatorAdder extends SimpleCartesianAdder<Oscillator> {
 
 	private final float radius;
