@@ -6,8 +6,20 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
+				<parameter name="pulseFrequency" displayName="Pulse Frequency (Hz)" type="double" 
+						defaultValue="130.0" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
 				<parameter name="couplingConstant" displayName="Coupling Constant" type="double" 
 						defaultValue="5.0" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
+				<parameter name="noiseStrength" displayName="Noise Strength" type="double" 
+						defaultValue="0.0" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									
@@ -18,6 +30,12 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
-		</parameters>
+				<parameter name="samplingFrequency" displayName="Sampling Frequency (Hz)" type="double" 
+						defaultValue="2048.0" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
+</parameters>
 
 
