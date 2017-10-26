@@ -13,9 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 package us.ihmc.simon.joscillators;
 
@@ -23,13 +20,21 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 import us.ihmc.simon.joscillators.Kuramoto;
 import us.ihmc.simon.joscillators.Oscillator;
 import us.ihmc.simon.joscillators.OscillatorUtils;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public class KuramotoTest extends TestCase {
 
+	@Test
 	public void testUpdate() {
 
 		final Collection<Oscillator> oscillators = new HashSet<>();
