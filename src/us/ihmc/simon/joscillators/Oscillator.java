@@ -13,9 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 
 package us.ihmc.simon.joscillators;
@@ -23,12 +20,18 @@ package us.ihmc.simon.joscillators;
 import repast.simphony.space.Dimensions;
 import repast.simphony.space.continuous.ContinuousSpace;
 
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
 public abstract class Oscillator {
 
+	protected final double strength;
 	protected double phase;
 	protected final double frequency;
 	protected final ContinuousSpace<Oscillator> space;
-	
+
 	/**
 	 * 
 	 * @param phase - instantaneous phase (cycles)
@@ -36,6 +39,7 @@ public abstract class Oscillator {
 	 * @param model
 	 */
 	Oscillator (double phase, double frequency, ContinuousSpace<Oscillator> space) {
+		this.strength = 0;
 		this.phase = phase;
 		this.frequency = frequency;
 		this.space = space;
