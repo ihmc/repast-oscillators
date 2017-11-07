@@ -40,10 +40,11 @@ public class Kuramoto extends Oscillator {
 	public void update() {
 		final Model m = Model.getModel();
 		final double currentPhase = phase;
-		double c = m.couplingConstant / m.numberOfOscillators;
+		final CumulativePhase cumulativePhase = CumulativePhase.getCurrentPhase(space); //(space.getObjects());
+		double c = m.couplingConstant * cumulativePhase.divergence;
 		// Get all oscillators from "space" and compute sum
 		double sum = c * StreamSupport.stream(space.getObjects().spliterator(), false)
-				.mapToDouble(o -> Math.sin(o.phase - currentPhase))
+				.mapToDouble(o -> Math.sin(cumulativePhase.mean - currentPhase))
 				.sum();
 
 		double newPhase = frequency + sum + m.noise.get() + m.pulse.get(this);
