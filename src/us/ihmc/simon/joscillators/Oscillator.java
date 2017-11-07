@@ -53,6 +53,10 @@ public abstract class Oscillator {
 		return (frequency * time) + phase;
 	}
 
+	public double getPhase() {
+		return phase;
+	}
+
 	protected void move() {
 		Dimensions dims = space.getDimensions();
 		double[] location = new double[dims.size()];
