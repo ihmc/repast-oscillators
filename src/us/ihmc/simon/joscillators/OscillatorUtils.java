@@ -13,15 +13,19 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Repast Oscillators. If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
- *
  */
 package us.ihmc.simon.joscillators;
 
+import java.util.Collection;
+
 import repast.simphony.random.RandomHelper;
 
-public class OscillatorUtils {
+/**
+ * 
+ * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
+ *
+ */
+class OscillatorUtils {
 
 	static double nextAngle() {		
 		return RandomHelper.nextDoubleFromTo(0.0, 360.0);
@@ -48,7 +52,33 @@ public class OscillatorUtils {
 	static ContinuosPoint toPoint(Oscillator o, float radious, float padding) {
 		return new ContinuosPoint (
 				radious + padding + (radious * Math.cos(o.getAngle())),
-				radious + padding + (radious * Math.sin(o.getAngle()))
-		); 
+				radious + padding + (radious * Math.sin(o.getAngle()))); 
+	}
+
+	static CumulativePhase getCumulativePhase(Iterable<Oscillator> oscillators) {
+		int counter = 0;
+		double sumSin = 0.0;
+		double sumCos = 0.0;
+		for (Oscillator o : oscillators) {
+			sumSin += Math.sin(o.phase);
+			sumCos += Math.cos(o.phase);
+			counter++;
+		}
+		sumSin /= counter;
+		sumCos /= counter;
+		return new CumulativePhase (module(Math.atan2(sumSin, sumCos), 2*Math.PI),
+				Math.sqrt(Math.pow(sumSin, 2) + Math.pow(sumCos, 2)));
+	}
+
+	static double getPhaseCoherence(Collection<Oscillator> oscillators) {
+		// TODO: missing "i"
+		double psi = getCumulativePhase(oscillators).mean;
+		double denominator = 1 / (Math.pow(Math.E, psi) * oscillators.size());
+		double sum = oscillators.stream().mapToDouble(o -> Math.pow(Math.E, o.phase)).sum();
+		return sum / denominator;
+	}
+
+	private static double module(double x, double y) {
+		return ((x % y) + y) % y;
 	}
 }
