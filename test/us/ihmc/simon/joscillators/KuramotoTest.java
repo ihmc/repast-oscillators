@@ -22,7 +22,6 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
 import us.ihmc.simon.joscillators.Kuramoto;
 import us.ihmc.simon.joscillators.Oscillator;
 import us.ihmc.simon.joscillators.OscillatorUtils;
@@ -32,7 +31,7 @@ import us.ihmc.simon.joscillators.OscillatorUtils;
  * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
  *
  */
-public class KuramotoTest extends TestCase {
+public class KuramotoTest {
 
 	@Test
 	public void testUpdate() {

@@ -17,16 +17,17 @@
 
 package us.ihmc.simon.joscillators;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * 
  * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
  *
  */
-public class HollowSymmetricMatrixTest extends TestCase {
+public class HollowSymmetricMatrixTest {
 
 	private static final float val01 = 0.11234f;
 	private static final float val02 = 0.21234f;
