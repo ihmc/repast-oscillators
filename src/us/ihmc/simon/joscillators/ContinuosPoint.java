@@ -22,7 +22,7 @@ package us.ihmc.simon.joscillators;
  * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
  *
  */
-public class ContinuosPoint {
+class ContinuosPoint {
 	final double x;
 	final double y;
 
