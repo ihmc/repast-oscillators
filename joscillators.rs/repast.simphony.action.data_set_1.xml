@@ -1,0 +1,31 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>Phases</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>us.ihmc.simon.joscillators.Kuramoto</sourceType>
+  <inclTick>true</inclTick>
+  <inclBatchRun>true</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>456351497</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Phase</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Phase</id>
+        <className>us.ihmc.simon.joscillators.Kuramoto</className>
+        <methodName>getPhase</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>
