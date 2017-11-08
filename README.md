@@ -3,6 +3,7 @@
 
 ## Useful Links:
 [Generative models of cortical oscillations: neurobiological implications of the Kuramoto model](https://www.frontiersin.org/articles/10.3389/fnhum.2010.00190/full)
+
 [Repast Symphony documentation](https://repast.github.io/docs.html)
 
 ## Getting Started
