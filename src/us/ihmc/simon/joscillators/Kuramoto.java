@@ -17,9 +17,8 @@
 
 package us.ihmc.simon.joscillators;
 
-import java.util.stream.StreamSupport;
-
-import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.engine.watcher.Watch;
+import repast.simphony.engine.watcher.WatcherTriggerSchedule;
 import repast.simphony.space.continuous.ContinuousSpace;
 import simphony.util.messages.MessageCenter;
 
@@ -36,18 +35,20 @@ public class Kuramoto extends Oscillator {
 		super(phase, frequency, space);
 	}
 
-	@ScheduledMethod(start=1, interval=1)
+	@Watch(watcheeClassName = "us.ihmc.simon.joscillators.Pulse",
+			watcheeFieldNames = "fired",
+			whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
 	public void update() {
-		final Model m = Model.getModel();
+		final Model m = Model.getModel(space);
 		final double currentPhase = phase;
-		final CumulativePhase cumulativePhase = CumulativePhase.getCurrentPhase(space); //(space.getObjects());
-		double c = m.couplingConstant * cumulativePhase.divergence;
-		// Get all oscillators from "space" and compute sum
-		double sum = c * StreamSupport.stream(space.getObjects().spliterator(), false)
-				.mapToDouble(o -> Math.sin(cumulativePhase.mean - currentPhase))
-				.sum();
+		final MeanField meanField = m.pulse.getCurrentMeanField();
+		
+		double dthdt = m.couplingConstant * meanField.r * Math.sin(meanField.psi - currentPhase);
+		double newPhase =
+				currentPhase + dthdt * (1/m.samplingFrequencyInHz) +
+				m.noise.get() +
+				m.pulse.get(this);
 
-		double newPhase = frequency + sum + m.noise.get() + m.pulse.get(this);
 		logger.info("transitioning phase: " + phase + " -> " + newPhase);
 		phase = newPhase;
 

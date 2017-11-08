@@ -55,7 +55,7 @@ class OscillatorUtils {
 				radious + padding + (radious * Math.sin(o.getAngle()))); 
 	}
 
-	static CumulativePhase getCumulativePhase(Iterable<Oscillator> oscillators) {
+	static MeanField getMeanField(Iterable<Oscillator> oscillators) {
 		int counter = 0;
 		double sumSin = 0.0;
 		double sumCos = 0.0;
@@ -66,13 +66,15 @@ class OscillatorUtils {
 		}
 		sumSin /= counter;
 		sumCos /= counter;
-		return new CumulativePhase (module(Math.atan2(sumSin, sumCos), 2*Math.PI),
-				Math.sqrt(Math.pow(sumSin, 2) + Math.pow(sumCos, 2)));
+
+		double psi = module(Math.atan2(sumSin, sumCos), 2*Math.PI);
+		double r = Math.sqrt(Math.pow(sumSin, 2) + Math.pow(sumCos, 2));
+		return new MeanField (psi, r);
 	}
 
 	static double getPhaseCoherence(Collection<Oscillator> oscillators) {
 		// TODO: missing "i"
-		double psi = getCumulativePhase(oscillators).mean;
+		double psi = getMeanField(oscillators).psi;
 		double denominator = 1 / (Math.pow(Math.E, psi) * oscillators.size());
 		double sum = oscillators.stream().mapToDouble(o -> Math.pow(Math.E, o.phase)).sum();
 		return sum / denominator;

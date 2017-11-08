@@ -39,8 +39,7 @@ public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 
 	@Override
 	public Context<Oscillator> build(Context<Oscillator> context) {
-		final Model m = Model.getModel();
-		
+
 		context.setId("joscillators");
 
 		// Create space to graphically represent oscillators
@@ -48,11 +47,15 @@ public class JOscillatorsBuilder implements ContextBuilder<Oscillator> {
 		ContinuousSpaceFactory spaceFactory =  ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null);
 		ContinuousSpace<Oscillator> space = spaceFactory.createContinuousSpace(
 				"space", context, adder, new StrictBorders(), adder.getSpaceWidth(), adder.getSpaceHeight());
+		
+		final Model m = Model.getModel(space);
 
 		// Added oscillators to context (and therefore to space, via OscillatorAdder)
 		for (int i = 0; i < m.numberOfOscillators; i++) {
 			context.add (new Kuramoto(OscillatorUtils.nextPhase(), OscillatorUtils.nextFrequency(), space));
 		}
+	
+		context.add(m.pulse);
 		
 		return context;
 	}

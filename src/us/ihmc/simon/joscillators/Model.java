@@ -18,6 +18,7 @@ package us.ihmc.simon.joscillators;
 
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.parameter.Parameters;
+import repast.simphony.space.continuous.ContinuousSpace;
 
 /**
  * 
@@ -38,6 +39,7 @@ public class Model {
 	private static Model INSTANCE = null;
 	public final int numberOfOscillators;
 	public final double couplingConstant;
+	public final double samplingFrequencyInHz = 2048.0;
 	public final Noise noise;
 	public final Pulse pulse;
 
@@ -48,7 +50,7 @@ public class Model {
 		this.pulse = pulse;
 	}
 
-	static Model getModel() {
+	static Model getModel(ContinuousSpace<Oscillator> space) {
 		if (INSTANCE == null) {
 			Parameters params = RunEnvironment.getInstance().getParameters();
 			int numberOfOscillators = params.getInteger("numberOfOscillators");
@@ -62,7 +64,7 @@ public class Model {
 
 			INSTANCE = new Model (numberOfOscillators, couplingConstant,
 					new Noise(noiseMean, noiseStdDev, noiseStrength),
-					new Pulse(0));
+					new Pulse(1, space));
 		}
 		return INSTANCE;
 	}
