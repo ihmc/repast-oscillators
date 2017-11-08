@@ -8,6 +8,7 @@
 ## Getting Started
 - Install Repast Symphony by following the instructions in the [official documentation page](https://repast.github.io/docs/RepastReference/RepastReference.html#_installation)
 - Make sure you choose the "Repast Symphony" perspective
+- Download extra dependencies needed by the joscillator project using `gradlew.bat copytolib` if Windows, `./gradlew copytolib` otherwise
 - Checkout the repast-oscillators module inside your workspace
 - Import the joscillator project
 - Start the model GUI by selecting the "oscillator Model" launcher in the launcher selector window (click on the small downward facing triangle next to the Eclipse launcher button). The GUI may take a few seconds to appear.
