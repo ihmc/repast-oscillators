@@ -11,5 +11,9 @@
 - Checkout the repast-oscillators module inside your workspace
 - Import the joscillator project
 - Start the model GUI by selecting the "oscillator Model" launcher in the launcher selector window (click on the small downward facing triangle next to the Eclipse launcher button). The GUI may take a few seconds to appear.
+  ![](docs/img/start_model.png)
+
 ## Running the Oscillator Model
+![](docs/img/model_gui.png)
 - The phases and coherence for each tick are saved in out `output/phases.csv` and `output/coherence` respectively.
+
