@@ -8,6 +8,6 @@
     <string>tick</string>
     <string>Divergence</string>
   </sourceIds>
-  <fileName>output/Divergence.csv</fileName>
-  <addTimeStamp>true</addTimeStamp>
+  <fileName>output/coherence.csv</fileName>
+  <addTimeStamp>false</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>

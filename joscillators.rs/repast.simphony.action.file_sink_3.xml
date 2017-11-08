@@ -8,6 +8,6 @@
     <string>tick</string>
     <string>Phase</string>
   </sourceIds>
-  <fileName>output/OscillatorPhases.csv</fileName>
+  <fileName>output/phases.csv</fileName>
   <addTimeStamp>false</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>
