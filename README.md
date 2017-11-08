@@ -16,5 +16,5 @@
 
 ## Running the Oscillator Model
 ![](docs/img/model_gui.png)
-- The phases and coherence for each tick are saved in out `output/phases.csv` and `output/coherence` respectively.
+- The phases and coherence for each tick are saved in out `output/phases.csv` and `output/coherence.csv` respectively.
 
