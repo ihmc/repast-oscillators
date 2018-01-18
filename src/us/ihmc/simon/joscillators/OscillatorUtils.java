@@ -25,7 +25,7 @@ import repast.simphony.random.RandomHelper;
  * @author Giacomo Benincasa	(gbenincasa@ihmc.us)
  *
  */
-class OscillatorUtils {
+public class OscillatorUtils {
 
 	static double nextAngle() {		
 		return RandomHelper.nextDoubleFromTo(0.0, 360.0);
@@ -35,13 +35,13 @@ class OscillatorUtils {
 		return Math.toRadians(nextAngle());
 	}
 
-	static double nextFrequency() {
+	public static double nextFrequency() {
 		return Model.Defaults.MEAN_OSCILLATORY_FREQUENCY_IN_RADIANS +
 				RandomHelper.nextDouble() *
 				Model.Defaults.MEAN_OSCILLATORY_FREQUENCY_STD_DEV_IN_RADIANS;
 	}
 	
-	static double nextPhase() {
+	public static double nextPhase() {
 		return RandomHelper.nextDouble() * 2 * Math.PI;
 	}
 
