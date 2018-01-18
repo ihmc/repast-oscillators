@@ -1,9 +1,9 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>Phases</name>
+  <name>Wave</name>
   <type>NON_AGGREGATE</type>
-  <sourceType>us.ihmc.simon.joscillators.Kuramoto</sourceType>
+  <sourceType>us.ihmc.simon.repositories.Repository</sourceType>
   <inclTick>true</inclTick>
-  <inclBatchRun>true</inclBatchRun>
+  <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
@@ -12,16 +12,24 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>456351497</hashCode>
+    <hashCode>-330284771</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>Phase</string>
+      <string>Id</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Phase</id>
-        <className>us.ihmc.simon.joscillators.Kuramoto</className>
-        <methodName>getPhase</methodName>
+        <id>Id</id>
+        <className>us.ihmc.simon.repositories.Repository</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Y</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Y</id>
+        <className>us.ihmc.simon.repositories.Repository</className>
+        <methodName>getY</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

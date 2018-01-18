@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/joscillators.iml" filepath="$PROJECT_DIR$/joscillators.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repast-oscillators.iml" filepath="$PROJECT_DIR$/.idea/modules/repast-oscillators.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repast-oscillators_main.iml" filepath="$PROJECT_DIR$/.idea/modules/repast-oscillators_main.iml" group="repast-oscillators" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/repast-oscillators_test.iml" filepath="$PROJECT_DIR$/.idea/modules/repast-oscillators_test.iml" group="repast-oscillators" />
+    </modules>
+  </component>
+</project>

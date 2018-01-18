@@ -31,7 +31,7 @@ public class Kuramoto extends Oscillator {
 
 	MessageCenter logger = MessageCenter.getMessageCenter(Kuramoto.class);
 
-	Kuramoto (double phase, double frequency, ContinuousSpace<Oscillator> space) {
+	public Kuramoto (double phase, double frequency, ContinuousSpace<Oscillator> space) {
 		super(phase, frequency, space);
 	}
 

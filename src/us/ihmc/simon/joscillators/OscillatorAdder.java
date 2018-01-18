@@ -31,7 +31,7 @@ public class OscillatorAdder extends SimpleCartesianAdder<Oscillator> {
 	private final float radius;
 	private final float padding;
 	
-	OscillatorAdder(float radius, float padding) {
+	public OscillatorAdder(float radius, float padding) {
 		this.radius = radius;
 		this.padding = padding;
 	}
@@ -53,11 +53,11 @@ public class OscillatorAdder extends SimpleCartesianAdder<Oscillator> {
 		space.moveTo(obj, location);
 	}
 
-	double getSpaceWidth() {
+	public double getSpaceWidth() {
 		return (getRadious() + GUI.PADDING) * 2;
 	}
 	
-	double getSpaceHeight() {
+	public double getSpaceHeight() {
 		// Square embedding the circle of radius "radius"
 		return getSpaceWidth();
 	}

@@ -50,7 +50,7 @@ public class Model {
 		this.pulse = pulse;
 	}
 
-	static Model getModel(ContinuousSpace<Oscillator> space) {
+	public static Model getModel(ContinuousSpace<Oscillator> space) {
 		if (INSTANCE == null) {
 			Parameters params = RunEnvironment.getInstance().getParameters();
 			int numberOfOscillators = params.getInteger("numberOfOscillators");
