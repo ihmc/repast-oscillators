@@ -1,16 +1,24 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor>
-  <name>Repository Oscillations</name>
+  <name>New Display</name>
   <type>2D</type>
   <styles>
     <entry>
-      <string>us.ihmc.simon.repositories.Repository</string>
+      <string>us.ihmc.simon.repositories.HistoricalRepository</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.SimulatedRepository</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>us.ihmc.simon.repositories.Repository</string>
-      <string>us.ihmc.simon.repositories.Repository.style_1.xml</string>
+      <string>us.ihmc.simon.repositories.HistoricalRepository</string>
+      <string>us.ihmc.simon.repositories.HistoricalRepository.style_6.xml</string>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.SimulatedRepository</string>
+      <string>us.ihmc.simon.repositories.SimulatedRepository.style_6.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -23,14 +31,18 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1633129501</hashCode>
+    <hashCode>1529466796</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>us.ihmc.simon.repositories.Repository</string>
+      <string>us.ihmc.simon.repositories.HistoricalRepository</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.SimulatedRepository</string>
       <int>0</int>
     </entry>
   </layerOrder>

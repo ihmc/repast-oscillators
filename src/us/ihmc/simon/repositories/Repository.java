@@ -3,9 +3,8 @@ package us.ihmc.simon.repositories;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.NdPoint;
 
-public class Repository {
+public abstract class Repository {
 	/**
 	 * 
 	 */
@@ -14,39 +13,70 @@ public class Repository {
 	private RunEnvironment state;
 	private double dy;
 	private double dx;
+	private double phase;
 	String id;
-	double phase;
+	RepositoryData data;
 
-	public Repository(ContinuousSpace<Repository> space, String id, double phase) {
+	public Repository(ContinuousSpace<Repository> space, String id, RepositoryData data) {
 		this.space = space;
 		state = RunEnvironment.getInstance();
 		this.id = id;
-		dx =  100 + radius * Math.cos(phase);
-	    dy = 100 + radius * -Math.sin(phase);
-		this.phase = phase;
+		dx =  100 + radius * Math.cos(0);
+	    dy = 100 + radius * -Math.sin(0);
+		this.data = data;
+		this.phase = 0;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
-	public void step() {
-		NdPoint myPoint = space.getLocation(this);
-		double time = state.getCurrentSchedule().getTickCount() * 2 * Math.PI / 360.0;
-
-	    dx = 100 + radius * Math.cos(phase + time);
-	    dy = 100 + radius * -Math.sin(phase + time); // counter-clockwise
-	    
-	    System.out.println("dx:\t" + dx + "\tdy:\t" + dy + "\tx:\t" + myPoint.getX() + "\ty:\t" + myPoint.getY());
-	    
-	    NdPoint otherPoint = new NdPoint(dx, dy);
-	    space.moveTo(this, otherPoint.getX(), otherPoint.getY());
-
-	}
+	public abstract void step();
 	
 	public String getId(){
 		return id;
 	}
-	
+
+	public void setY(double y){
+		this.dy = y;
+	}
 	public double getY(){
 		return dy;
 	}
+	
+	public void setX(double x){
+		this.dx = x;
+	}
+
+	public double getX(){
+		return dx;
+	}
+
+	public double getRadius(){
+		return radius;
+	}
+	
+	public ContinuousSpace<Repository> getSpace(){
+		return space;
+	}
+
+	public RunEnvironment getState(){
+		state.setScheduleTickDelay(4);
+		return state;
+	}
+	
+	public void setPhase(double phase){
+		this.phase = phase;
+	}
+	
+	public double getPhase(){
+		return phase;
+	}
+	
+	public boolean hasNext(){
+		return data.hasNext();
+	}
+	
+	public Integer getNext(){
+		return data.getNext();
+	}
+	
 
 }
