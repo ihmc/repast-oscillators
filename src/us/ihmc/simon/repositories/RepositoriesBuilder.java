@@ -21,8 +21,8 @@ import repast.simphony.context.Context;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.RandomCartesianAdder;
 import repast.simphony.space.continuous.SimpleCartesianAdder;
 import repast.simphony.space.continuous.StrictBorders;
 
@@ -41,18 +41,23 @@ public class RepositoriesBuilder implements ContextBuilder<Repository> {
 		SimpleCartesianAdder<Repository> adder = new SimpleCartesianAdder<Repository>();
 
 		// Create space to graphically represent oscillators
-
 		ContinuousSpaceFactory spaceFactory =  ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null);
 		ContinuousSpace<Repository> space = spaceFactory.createContinuousSpace(
 				"space", context, adder, new StrictBorders(), 200, 200);
 
-		Repository rails = new Repository(space, "Rails", 0);
-		Repository ruby = new Repository(space, "Ruby", Math.PI);
+		String railsPath = "misc/data/rails.csv";
+		String bundlerPath = "misc/data/bundler.csv"; // TODO update path
+		RepositoryData railsData = new RepositoryData(railsPath);		
+		RepositoryData bundlerData = new RepositoryData(bundlerPath);
+		railsData.truncateToCoupling(bundlerData.getFirst());
+		Repository rails = new HistoricalRepository(space, "Rails", railsData);
+		Repository bundler = new SimulatedRepository(space, "Bundler", bundlerData);
+		rails.setPhase((railsData.peek().doubleValue() - bundlerData.peek().doubleValue()));
 		context.add(rails);
-		context.add(ruby);
+		context.add(bundler);
 		space.moveTo(rails, 100,100);
-		space.moveTo(ruby, 100,100);
-	
+		space.moveTo(bundler, 100,100);
+		
 		return context;
 	}
 }
