@@ -18,6 +18,9 @@ package us.ihmc.simon.repositories;
 
 
 import org.junit.Test;
+
+import repast.simphony.data2.DataSource;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -53,5 +56,12 @@ public class RepositoryDataTest {
 		String path = "misc/data/bundler.csv";
 		RepositoryData rd = new RepositoryData(path);
 		assertEquals(50.2272, rd.getMean(),meanDelta);
+	}
+	
+	@Test
+	public void testCustomAggregation() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+		String name = "us.ihmc.simon.repositories.Repository";
+		Class<?> clazz = Class.forName(name);
+		DataSource ds = (DataSource) clazz.newInstance();
 	}
 }
