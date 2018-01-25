@@ -50,8 +50,8 @@ public class RepositoriesBuilder implements ContextBuilder<Repository> {
 		RepositoryData railsData = new RepositoryData(railsPath);		
 		RepositoryData bundlerData = new RepositoryData(bundlerPath);
 		railsData.truncateToCoupling(bundlerData.getFirst());
-		Repository rails = new HistoricalRepository(space, "Rails", railsData);
-		Repository bundler = new SimulatedRepository(space, "Bundler", bundlerData);
+		HistoricalRepository rails = new HistoricalRepository(space, "Rails", railsData);
+		SimulatedRepository bundler = new SimulatedRepository(space, "Bundler", bundlerData);
 		rails.setPhase((railsData.peek().doubleValue() - bundlerData.peek().doubleValue()));
 		context.add(rails);
 		context.add(bundler);

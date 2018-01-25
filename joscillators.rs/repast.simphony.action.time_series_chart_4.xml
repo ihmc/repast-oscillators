@@ -1,5 +1,5 @@
 <repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
-  <name>Time Series Chart</name>
+  <name>Wave</name>
   <dataSet>Wave</dataSet>
   <xAxisLabel>Tick Count</xAxisLabel>
   <yAxisLabel>Y</yAxisLabel>

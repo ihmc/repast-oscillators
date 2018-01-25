@@ -1,0 +1,29 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>A Data Set</name>
+  <type>AGGREGATE</type>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>265587356</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map"/>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map">
+    <entry>
+      <string>Coherence</string>
+      <repast.simphony.data2.engine.CustomDataSourceDefinition>
+        <id>Coherence</id>
+        <dsClassName>us.ihmc.simon.repositories.Coherence</dsClassName>
+      </repast.simphony.data2.engine.CustomDataSourceDefinition>
+    </entry>
+  </customAggDataSources>
+</repast.simphony.data2.engine.DataSetDescriptor>

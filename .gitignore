@@ -12,6 +12,7 @@
 
 # Log file
 *.log.*
+*2018*.txt
 
 # BlueJ files
 *.ctxt
