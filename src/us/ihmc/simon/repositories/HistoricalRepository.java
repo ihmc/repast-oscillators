@@ -26,9 +26,9 @@ public class HistoricalRepository extends Repository {
 			if(hasNext()){
 				int gap = getNext().intValue();
 				duration = gap;
-				dailyMovement = 1.0/gap;
+				dailyMovement = (gap * 2 * Math.PI) / 365 ;
 				timer = gap - 1;
-				System.out.println("Changed:\t" + moved);
+				System.out.println("Changed:\t" + gap);
 				moved = !moved;
 			} else {
 				RunEnvironment.getInstance().endRun();
@@ -36,10 +36,13 @@ public class HistoricalRepository extends Repository {
 		} else {
 			timer--;
 		}
-		double time = (duration - timer) * dailyMovement * Math.PI * 2;
-
-	    setX(100 + getRadius() * Math.cos(getPhase() + time));
-	    setY(100 + getRadius() * -Math.sin(getPhase() + time)); // counter-clockwise
+//		double time = (duration - timer) * dailyMovement * Math.PI * 2;
+		double oldPhase = getPhase();
+		double newPhase = oldPhase + dailyMovement;
+		
+		setPhase(newPhase);	
+		setX(100 + getRadius() * Math.cos(getPhase()));
+		setY(100 + getRadius() * Math.sin(getPhase())); 
 	    getSpace().moveTo(this, getX(), getY());
 	}
 	

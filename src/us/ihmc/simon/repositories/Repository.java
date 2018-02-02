@@ -24,7 +24,7 @@ public abstract class Repository {
 		state = RunEnvironment.getInstance();
 		this.id = id;
 		dx =  100 + radius * Math.cos(0);
-	    dy = 100 + radius * -Math.sin(0);
+	    dy = 100 + radius * Math.sin(0);
 		this.data = data;
 		this.phase = 0;
 	}
@@ -60,7 +60,6 @@ public abstract class Repository {
 	}
 
 	public RunEnvironment getState(){
-		state.setScheduleTickDelay(4);
 		return state;
 	}
 	
@@ -69,6 +68,7 @@ public abstract class Repository {
 	}
 	
 	public double getPhase(){
+		state.setScheduleTickDelay(3);
 		return phase;
 	}
 	

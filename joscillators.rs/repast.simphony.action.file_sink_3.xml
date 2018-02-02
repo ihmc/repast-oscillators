@@ -1,12 +1,13 @@
 <repast.simphony.data2.engine.FileSinkDescriptor>
-  <name>A File Sink</name>
+  <name>Phase</name>
   <dataSet>Wave</dataSet>
   <delimiter>,</delimiter>
   <format>TABULAR</format>
   <sourceIds class="linked-hash-set">
     <string>Y</string>
     <string>tick</string>
+    <string>Id</string>
   </sourceIds>
-  <fileName>wave.txt</fileName>
+  <fileName>phase.csv</fileName>
   <addTimeStamp>true</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>

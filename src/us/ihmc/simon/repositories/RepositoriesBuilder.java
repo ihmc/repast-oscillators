@@ -17,6 +17,8 @@
 
 package us.ihmc.simon.repositories;
 
+import java.math.BigInteger;
+
 import repast.simphony.context.Context;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
@@ -45,26 +47,26 @@ public class RepositoriesBuilder implements ContextBuilder<Repository> {
 		ContinuousSpace<Repository> space = spaceFactory.createContinuousSpace(
 				"space", context, adder, new StrictBorders(), 200, 200);
 
-		String railsPath = "misc/data/rails.csv";
-		String bundlerPath = "misc/data/bundler.csv"; 
-		String mysql2Path = "misc/data/mysql2.csv"; 
-		RepositoryData railsData = new RepositoryData(railsPath);		
-		RepositoryData bundlerData = new RepositoryData(bundlerPath);	
-		RepositoryData mysql2Data = new RepositoryData(mysql2Path);
-		railsData.truncateToCoupling(bundlerData.getFirst());
-		mysql2Data.truncateToCoupling(bundlerData.getFirst());
-		SimulatedRepository rails = new SimulatedRepository(space, "Rails", railsData);
-		SimulatedRepository mysql2 = new SimulatedRepository(space, "MySQL2", mysql2Data);
-		SimulatedRepository bundler = new SimulatedRepository(space, "Bundler", bundlerData);
-//		rails.setPhase((railsData.peek().doubleValue() - bundlerData.peek().doubleValue()));
-//		mysql2.setPhase((mysql2Data.peek().doubleValue() - bundlerData.peek().doubleValue()));
-		context.add(rails);
-		context.add(mysql2);
-		context.add(bundler);
-		space.moveTo(rails, 100,100);
-		space.moveTo(mysql2, 100,100);
-		space.moveTo(bundler, 100,100);
 		
+		String[] repositories = {"ffi", "arel", "tilt", "mail"};
+//		String[] repositories = {"mail"};
+		
+		for (int i = 0; i < repositories.length; i++) {
+			String repository = repositories[i];
+			String path = "misc/data/commits/" + repository + ".csv";
+			RepositoryData data = new RepositoryData(path);
+			data.trimToCoupling(new BigInteger("1451538000000"));
+			data.truncateToCoupling(new BigInteger("1483246800000"));
+			SimulatedRepository simRepo = new SimulatedRepository(space, "Sim-" + repository, data);
+			context.add(simRepo);
+			
+			HistoricalRepository histRepo = new HistoricalRepository(space, "Hist-" + repository, data);
+			context.add(histRepo);
+
+			NaturalRepository nr = new NaturalRepository(space, "Nat-" + repository, data);
+			context.add(nr);
+		}
+	
 		return context;
 	}
 }

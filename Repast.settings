@@ -3,15 +3,19 @@
   <hashtable>
     <default>
       <loadFactor>0.75</loadFactor>
-      <threshold>3</threshold>
+      <threshold>6</threshold>
     </default>
+    <int>9</int>
     <int>5</int>
-    <int>3</int>
-    <string>SettingsFileName</string>
-    <string>Repast.settings</string>
     <string>SettingsRegistryId</string>
     <string>Repast.registry</string>
     <string>LastLoadedScenario</string>
     <string>/Users/adalton/projects/simon/code/joscillators/joscillators.rs</string>
+    <string>RStudio.licenseAccepted</string>
+    <boolean>true</boolean>
+    <string>RStudio.home</string>
+    <string>/Applications/RStudio.app</string>
+    <string>SettingsFileName</string>
+    <string>Repast.settings</string>
   </hashtable>
 </simphony.settings.SettingsRegistry>

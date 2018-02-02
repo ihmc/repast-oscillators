@@ -1,9 +1,13 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor>
-  <name>New Display</name>
+  <name>Oscillators</name>
   <type>2D</type>
   <styles>
     <entry>
       <string>us.ihmc.simon.repositories.HistoricalRepository</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.NaturalRepository</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
@@ -14,11 +18,15 @@
   <editedStyles>
     <entry>
       <string>us.ihmc.simon.repositories.HistoricalRepository</string>
-      <string>us.ihmc.simon.repositories.HistoricalRepository.style_6.xml</string>
+      <string>us.ihmc.simon.repositories.HistoricalRepository.style_8.xml</string>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.NaturalRepository</string>
+      <string>us.ihmc.simon.repositories.NaturalRepository.style_1.xml</string>
     </entry>
     <entry>
       <string>us.ihmc.simon.repositories.SimulatedRepository</string>
-      <string>us.ihmc.simon.repositories.SimulatedRepository.style_6.xml</string>
+      <string>us.ihmc.simon.repositories.SimulatedRepository.style_7.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -31,7 +39,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1529466796</hashCode>
+    <hashCode>-928915087</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -39,11 +47,15 @@
   <layerOrder>
     <entry>
       <string>us.ihmc.simon.repositories.HistoricalRepository</string>
-      <int>1</int>
+      <int>0</int>
+    </entry>
+    <entry>
+      <string>us.ihmc.simon.repositories.NaturalRepository</string>
+      <int>2</int>
     </entry>
     <entry>
       <string>us.ihmc.simon.repositories.SimulatedRepository</string>
-      <int>0</int>
+      <int>1</int>
     </entry>
   </layerOrder>
   <projections>

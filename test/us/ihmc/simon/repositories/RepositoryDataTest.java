@@ -37,7 +37,7 @@ public class RepositoryDataTest {
 
 	@Test
 	public void testLoadCsvFile() {
-		String path = "misc/data/rails.csv";
+		String path = "misc/data/tags/rails.csv";
 		RepositoryData rd = new RepositoryData(path);
 
 		assertEquals(railsCount, rd.count());
@@ -46,22 +46,22 @@ public class RepositoryDataTest {
 
 	@Test
 	public void testLoadBundlerCsvFile() {
-		String path = "misc/data/bundler.csv";
+		String path = "misc/data/tags/bundler.csv";
 		RepositoryData rd = new RepositoryData(path);
 
-		assertEquals(30, rd.count());
+		assertEquals(263, rd.count());
 	}
 	@Test
 	public void testLoadBundlerStats() {
-		String path = "misc/data/bundler.csv";
+		String path = "misc/data/tags/bundler.csv";
 		RepositoryData rd = new RepositoryData(path);
-		assertEquals(50.2272, rd.getMean(),meanDelta);
+		assertEquals(15.43367, rd.getMean(),meanDelta);
+	}
+	@Test
+	public void testFrequencyInRadians() {
+		String path = "misc/data/tags/bundler.csv";
+		RepositoryData rd = new RepositoryData(path);
+		assertEquals(0.3968, rd.getFrequencyInRadians(),meanDelta);
 	}
 	
-	@Test
-	public void testCustomAggregation() throws ClassNotFoundException, InstantiationException, IllegalAccessException{
-		String name = "us.ihmc.simon.repositories.Repository";
-		Class<?> clazz = Class.forName(name);
-		DataSource ds = (DataSource) clazz.newInstance();
-	}
 }

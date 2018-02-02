@@ -21,32 +21,47 @@ public class RepositoryData {
 	DescriptiveStatistics stats;
 	Stack<Integer> stack;
 	
+	private double RADIANS_PER_HOUR = 0.000716782378;
+	private double RADIANS_PER_DAY = RADIANS_PER_HOUR * 24;
+	
 	private Integer DAY_CONVERTER= new Integer(1000*60*60*24);
 	
 	public RepositoryData(String path){
-		System.out.println("constructing");
+		System.out.println("constructing:\t" + path);
 		arrivals = new ArrayList<Integer>();
-		stack = new Stack<Integer>();
 		try{
 		Reader in = new FileReader(path);
 		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withQuote(null).withHeader().parse(in);
+		
+		// The creation date column comes from github and is milliseconds since epoch. We convert it to days
 		for (CSVRecord record : records) {
-			int day = millisecondsToDays(new BigInteger(record.get("creation_date")));
-			arrivals.add(new Integer((int)day));
+			Integer day = millisecondsToDays(new BigInteger(record.get("creation_date")));
+			arrivals.add(day);
 		}
 		
 		Collections.sort(arrivals);
 		System.out.println("Converting");
-		intervals = convertToIntervals(arrivals);
+		
+		// Since we're working with oscillations, we want to know the frequency. We first figure out how long each event takes to arrive
+		setup();
 		} catch (Exception e){
 			System.out.println("Err");
 			System.err.println(e.getMessage());
 		}
 	}
 	
-	private int millisecondsToDays(BigInteger milliseconds){
+	private void setup(){
+		stack = new Stack<Integer>();
+		intervals = convertToIntervals(arrivals);
+	}
+	
+	public double getFrequencyInRadians(){
+		return 356 / getMean() * RADIANS_PER_DAY;
+	}
+	
+	private Integer millisecondsToDays(BigInteger milliseconds){
 		int days = (milliseconds.divide(new BigInteger(DAY_CONVERTER.toString()))).intValue();
-		return days;
+		return new Integer(days);
 	}
 	
 	private ArrayList<Integer> convertToIntervals(ArrayList<Integer> arrivals){
@@ -92,10 +107,13 @@ public class RepositoryData {
 		return stats.getMean();
 	}
 	
+	public double getStandardDeviation(){
+		return stats.getStandardDeviation();
+	}
+	
 	public int count(){
 		for (Iterator iterator = arrivals.iterator(); iterator.hasNext();) {
 			Integer integer = (Integer) iterator.next();
-			System.out.println(integer);
 		}
 		return arrivals.size();
 	}
@@ -103,10 +121,25 @@ public class RepositoryData {
 	public Integer getFirst(){
 		return arrivals.get(0);
 	}
-	
-	public void truncateToCoupling(Integer couplingStart){
-		while(!stack.isEmpty() && stack.peek().compareTo(couplingStart) > 0){
-			stack.pop();
+
+	public void truncateToCoupling(BigInteger couplingEnd){
+		Integer cutoff = millisecondsToDays(couplingEnd);
+		for (Iterator iterator = arrivals.iterator(); iterator.hasNext();) {
+			Integer integer = (Integer) iterator.next();
+			if(integer.compareTo(cutoff) > 0 ){
+				iterator.remove();
+			}
 		}
+		setup();
+	}
+	public void trimToCoupling(BigInteger couplingStart){
+		Integer cutoff = millisecondsToDays(couplingStart);
+		for (Iterator iterator = arrivals.iterator(); iterator.hasNext();) {
+			Integer integer = (Integer) iterator.next();
+			if(integer.compareTo(cutoff) < 0 ){
+				iterator.remove();
+			}
+		}
+		setup();
 	}
 }
